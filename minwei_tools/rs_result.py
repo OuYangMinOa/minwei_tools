@@ -25,10 +25,10 @@ class Result(Generic[T, E]):
     def error(self, value: E) -> None:
         self.__error = value
 
-    def is_ok(self) -> Boolean:
+    def is_ok(self) -> bool:
         return isinstance(self, Ok)
     
-    def is_err(self) -> Boolean:
+    def is_err(self) -> bool:
         return isinstance(self, Err)
     
     def unwrap(self) -> T:
@@ -61,7 +61,7 @@ class Result(Generic[T, E]):
             return Err(func(self.error))
         return self  # Return the Ok unchanged
 
-    def __str__(self) -> AnyStr:
+    def __str__(self) -> str:
         if self.is_ok():
             return f"Ok({self.value})"
         return f"Err(\"{self.error}\")"

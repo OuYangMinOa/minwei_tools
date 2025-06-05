@@ -16,7 +16,7 @@ TEMPLATE = """
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-4">
-    <h2>📁 File Transfer Server</h2>
+    <h2>📁 MinWei File Transfer Server</h2>
     <form id="downloadForm" method="POST" action="/download_zip">
         <ul class="list-group mt-3">
             {% for f in files %}

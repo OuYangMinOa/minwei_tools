@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='minwei_tools',
-    version='0.1.3',
+    version='0.1.5',
     author='OUYANGMINWEI',
     author_email='wesley91345@gmail.com',
     description='Some useful tools for Python development',
@@ -16,9 +16,14 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.9',
+    entry_points = {
+        'console_scripts': [
+            'minwei_tools.server = minwei_tools.server:app.run',
+        ],
+    }
 )
 
 """
-python -m build
-twine upload dist/*
+uv run python -m build
+uv run twine upload dist/*
 """
