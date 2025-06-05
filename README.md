@@ -1,9 +1,10 @@
 # minwei_tools
 
-### This tools contain two major function
+### This tools contain 3 major function
 
 1. Dotter : Display animated text on screen during long missions
 2. re_result : A Rust-like approach to error handling
+3. server : A file transfer server 
 
 # Install
 
@@ -12,6 +13,12 @@ pip install minwei_tools
 ```
 
 # Usage
+
+* ## File Transfer server
+
+    ```python
+    python -m minwei_tools.server -p {port} -h {host}
+    ```
 
 * ## Dotter
 
