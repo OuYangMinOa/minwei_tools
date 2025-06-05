@@ -1,4 +1,4 @@
-from .dotter import Dotter
+from .dotter import Dotter, piano, slash
 import rs_result as rs_result
 
 __all__ = [
