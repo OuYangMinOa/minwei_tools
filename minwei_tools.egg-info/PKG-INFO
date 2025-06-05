@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: minwei-tools
-Version: 0.1.5
+Version: 0.1.6
 Summary: Add your description here
 Home-page: https://github.com/OuYangMinOa/minwei_tools
 Author: OUYANGMINWEI
@@ -8,6 +8,7 @@ Author-email: wesley91345@gmail.com
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: colorama>=0.4.6
 Requires-Dist: flask>=2.2.5
 Dynamic: author
 Dynamic: author-email
@@ -17,10 +18,11 @@ Dynamic: requires-python
 
 # minwei_tools
 
-### This tools contain two major function
+### This tools contain 3 major function
 
 1. Dotter : Display animated text on screen during long missions
 2. re_result : A Rust-like approach to error handling
+3. server : A file transfer server 
 
 # Install
 
@@ -29,6 +31,12 @@ pip install minwei_tools
 ```
 
 # Usage
+
+* ## File Transfer server
+
+    ```python
+    python -m minwei_tools.server -p {port} -h {host}
+    ```
 
 * ## Dotter
 

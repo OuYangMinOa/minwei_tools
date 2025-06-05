@@ -176,14 +176,18 @@ wheels = [
 
 [[package]]
 name = "minwei-tools"
-version = "0.1.5"
+version = "0.1.6"
 source = { editable = "." }
 dependencies = [
+    { name = "colorama" },
     { name = "flask" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "flask", specifier = ">=2.2.5" }]
+requires-dist = [
+    { name = "colorama", specifier = ">=0.4.6" },
+    { name = "flask", specifier = ">=2.2.5" },
+]
 
 [[package]]
 name = "werkzeug"

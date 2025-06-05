@@ -1,7 +1,9 @@
-import os
 import zipfile
+import os
 import io
+
 from flask import Flask, send_file, render_template_string, request, jsonify
+
 
 app = Flask(__name__)
 
@@ -79,4 +81,27 @@ def download_zip():
     return send_file(zip_buffer, mimetype='application/zip', as_attachment=True, download_name="files.zip")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    import argparse
+    import colorama
+    
+    parser = argparse.ArgumentParser(description="MinWei File Transfer Server")
+    parser.add_argument("-p", "--port", type=int, default=8000, help="Port to run the server on")
+    parser.add_argument("--host", type=str, default="localhost", help="Host to run the server on")
+    parser.add_argument("--debug", action="store_true", help="Run the server in debug mode")
+    parser.add_argument("-d", "--base_dir", type=str, default=".", help="Base directory to serve files from")
+    args = parser.parse_args()
+    BASE_DIR = os.path.abspath(args.base_dir)
+    if not os.path.exists(BASE_DIR):
+        raise FileNotFoundError(f"Base directory '{BASE_DIR}' does not exist.")
+    
+    if not os.path.isdir(BASE_DIR):
+        raise NotADirectoryError(f"Base directory '{BASE_DIR}' is not a directory.")
+    
+    if not os.access(BASE_DIR, os.R_OK):
+        raise PermissionError(f"Base directory '{BASE_DIR}' is not readable.")
+    
+    print(f"\n * Starting {colorama.Back.YELLOW}MinWei File Transfer Server{colorama.Style.RESET_ALL} at {colorama.Back.YELLOW}{colorama.Fore.BLACK}http://{args.host}:{args.port}{colorama.Style.RESET_ALL} with base directory {colorama.Back.YELLOW}{colorama.Fore.BLACK}{BASE_DIR}{colorama.Style.RESET_ALL}")
+    
+    app.run(host=args.host, port=args.port, debug=args.debug)
+    
+    # app.run(host=args.host, port=args.port, debug=args.debug)
