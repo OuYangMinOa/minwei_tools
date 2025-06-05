@@ -1,6 +1,6 @@
 # minwei_tools
 
-### This tools contain to major function
+### This tools contain two major function
 
 1. Dotter : Display animated text on screen during long missions
 2. re_result : A Rust-like approach to error handling
@@ -25,13 +25,13 @@ pip install minwei_tools
         sleep(120)
     ```
 
-    Also support an async dotter
+    Also support an `async` dotter
 
     ```python
-    from minwei_tools import AsyncDotter
     from time import sleep
-
     import asyncio
+
+    from minwei_tools import AsyncDotter
 
     async def main():
         async with AsyncDotter("Thinking", show_timer=True, delay=0.1):

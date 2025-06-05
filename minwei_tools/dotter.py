@@ -28,13 +28,13 @@ class Dotter:
                  cycle: list[str] = ["", ".", ". .", ". . ."], 
                  show_timer: bool = False) -> None:
         
-        self.dotter_thread    : Optional[threading.Thread] = None
-        self.start_time       : Optional[float]            = None
+        self.spinner          : itertools.cycle            = itertools.cycle(cycle)
         self.show_timer       : bool                       = show_timer
         self.message          : str                        = message
-        self.spinner          : itertools.cycle            = itertools.cycle(cycle)
-        self.running          : bool                       = False
         self.delay            : float                      = delay
+        self.dotter_thread    : Optional[threading.Thread] = None
+        self.start_time       : Optional[float]            = None
+        self.running          : bool                       = False
 
     def format_elapsed(self, elapsed: float) -> str:
         if elapsed < 300:
