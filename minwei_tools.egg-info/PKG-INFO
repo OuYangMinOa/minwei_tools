@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: minwei_tools
-Version: 0.1.0
+Version: 0.1.1
 Summary: Some useful tools for Python development
 Home-page: https://github.com/OuYangMinOa/minwei_tools
 Author: OUYANGMINWEI
@@ -39,13 +39,16 @@ pip install minwei_tools
 * ## Dotter
 
     ```python
-    from minwei_tools import Dotter
+    from minwei_tools import Dotter, piano, slash
+    from time import sleep
 
     with Dotter(cycle = piano, message="Loading", delay=0.1, show_timer=1) as d:
         sleep(120)
     ```
 
 * ## rs_result
+
+
 
     ```python
     from minwei_tools.rs_result import Result, Ok, Err
@@ -54,6 +57,18 @@ pip install minwei_tools
         if b == 0:
             return Err("Division by zero error")
         return Ok(a // b)
+
+    """
+    >>> result : Result[int, str] = devide(10, 0)
+    >>> result.is_ok()
+    False
+    >>> result.is_err()
+    >>> result : Result[int, str] = devide(10, 2)
+    >>> result.is_ok()
+    True
+    >>> result.unwrap()
+    5
+    """
 
     result : Result[int, str] = devide(10, 0)
     match result:
