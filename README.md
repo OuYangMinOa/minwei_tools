@@ -15,6 +15,8 @@ pip install minwei_tools
 
 * ## Dotter
 
+    ![alt text](loading.gif)
+
     ```python
     from minwei_tools import Dotter, piano, slash
     from time import sleep
@@ -23,9 +25,22 @@ pip install minwei_tools
         sleep(120)
     ```
 
+    Also support an async dotter
+
+    ```python
+    from minwei_tools import AsyncDotter
+    from time import sleep
+
+    import asyncio
+
+    async def main():
+        async with AsyncDotter("Thinking", show_timer=True, delay=0.1):
+            await asyncio.sleep(120)
+
+    asyncio.run(main())
+    ```
+
 * ## rs_result
-
-
 
     ```python
     from minwei_tools.rs_result import Result, Ok, Err
