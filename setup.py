@@ -17,3 +17,9 @@ setup(
     ],
     python_requires='>=3.6',
 )
+
+"""
+python -m build
+twine upload dist/*
+
+"""

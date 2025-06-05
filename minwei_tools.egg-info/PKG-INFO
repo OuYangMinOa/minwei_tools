@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: minwei_tools
-Version: 0.1.1
+Version: 0.1.2
 Summary: Some useful tools for Python development
 Home-page: https://github.com/OuYangMinOa/minwei_tools
 Author: OUYANGMINWEI
@@ -38,6 +38,8 @@ pip install minwei_tools
 
 * ## Dotter
 
+    ![alt text](loading.gif)
+
     ```python
     from minwei_tools import Dotter, piano, slash
     from time import sleep
@@ -46,9 +48,22 @@ pip install minwei_tools
         sleep(120)
     ```
 
+    Also support an async dotter
+
+    ```python
+    from minwei_tools import AsyncDotter
+    from time import sleep
+
+    import asyncio
+
+    async def main():
+        async with AsyncDotter("Thinking", show_timer=True, delay=0.1):
+            await asyncio.sleep(120)
+
+    asyncio.run(main())
+    ```
+
 * ## rs_result
-
-
 
     ```python
     from minwei_tools.rs_result import Result, Ok, Err
