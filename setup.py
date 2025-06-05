@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='minwei_tools',
-    version='0.1.2',
+    version='0.1.3',
     author='OUYANGMINWEI',
     author_email='wesley91345@gmail.com',
     description='Some useful tools for Python development',
@@ -15,7 +15,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.9',
 )
 
 """
