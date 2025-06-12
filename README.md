@@ -28,8 +28,10 @@ pip install minwei_tools
     from minwei_tools import Dotter, piano, slash
     from time import sleep
 
-    with Dotter(cycle = piano, message="Loading", delay=0.1, show_timer=1) as d:
-        sleep(120)
+    with Dotter(message="[*] Testing 1", cycle=slash, delay=0.1, show_timer=1) as d:
+        sleep(10)
+        d.update_message("[-] Testing 2", delay=0.1)
+        sleep(2)
     ```
 
     Also support an `async` dotter

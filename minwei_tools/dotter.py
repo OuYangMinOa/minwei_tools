@@ -24,7 +24,7 @@ slash = ["\\","|","/", "-"]
 
 class Dotter:
     # A dotter while I'm thinking
-    def __init__(self, message: str = "Thinking", delay: float = 0.1, 
+    def __init__(self, message: str = "Thinking", delay: float = 0.5, 
                  cycle: list[str] = ["", ".", ". .", ". . ."], 
                  show_timer: bool = False) -> None:
         
@@ -66,11 +66,13 @@ class Dotter:
         )  # Clear the current message
         sys.stdout.flush()
         self.message = new_message
+        self.delay = delay  # Update the delay if needed
 
     def __enter__(self):
         self.running = True
         self.dotter_thread = threading.Thread(target=self.dot)
         self.dotter_thread.start()
+        return self
 
     def __exit__(self, *args) -> None:
         self.running = False
@@ -79,9 +81,12 @@ class Dotter:
         sys.stdout.write(f"\r{' ' * (len(self.message) + 20)}\r")
         sys.stdout.flush()
 
-
 if __name__ == "__main__":
     from time import sleep
+    import asyncio
+    from minwei_tools.dotter import AsyncDotter
 
-    with Dotter(message="Loading", cycle=slash, delay=0.15, show_timer=0) as d:
-        sleep(120)
+    with Dotter(message="[*] Grabing player log", cycle=slash, delay=0.1, show_timer=1) as d:
+        sleep(5)
+        d.update_message("[*] Player log grabbed", delay=0.1)
+        sleep(5)
