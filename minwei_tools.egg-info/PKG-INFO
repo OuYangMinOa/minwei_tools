@@ -1,17 +1,18 @@
 Metadata-Version: 2.4
 Name: minwei-tools
-Version: 0.1.7
-Summary: Add your description here
+Version: 0.1.8
+Summary: A sample tool by MinWei
 Home-page: https://github.com/OuYangMinOa/minwei_tools
 Author: OUYANGMINWEI
-Author-email: wesley91345@gmail.com
+Author-email: OUYANGMINWEI <wesley91345@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: colorama>=0.4.6
 Requires-Dist: flask>=2.2.5
 Dynamic: author
-Dynamic: author-email
 Dynamic: home-page
 Dynamic: license-file
 Dynamic: requires-python
@@ -46,8 +47,10 @@ pip install minwei_tools
     from minwei_tools import Dotter, piano, slash
     from time import sleep
 
-    with Dotter(cycle = piano, message="Loading", delay=0.1, show_timer=1) as d:
-        sleep(120)
+    with Dotter(message="[*] Testing 1", cycle=slash, delay=0.1, show_timer=1) as d:
+        sleep(10)
+        d.update_message("[-] Testing 2", delay=0.1)
+        sleep(2)
     ```
 
     Also support an `async` dotter

@@ -7,8 +7,10 @@ minwei_tools/async_dotter.py
 minwei_tools/dotter.py
 minwei_tools/rs_result.py
 minwei_tools/server.py
+minwei_tools/uv_doc.py
 minwei_tools.egg-info/PKG-INFO
 minwei_tools.egg-info/SOURCES.txt
 minwei_tools.egg-info/dependency_links.txt
+minwei_tools.egg-info/entry_points.txt
 minwei_tools.egg-info/requires.txt
 minwei_tools.egg-info/top_level.txt
