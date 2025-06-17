@@ -7,12 +7,13 @@ minwei_tools/
 ├── .gitignore
 ├── .python-version
 ├── LICENSE
+├── README.md
 ├── loading.gif
 ├── minwei_tool.egg-info
-│   ├── dependency_links.txt
 │   ├── PKG-INFO
-│   ├── requires.txt
 │   ├── SOURCES.txt
+│   ├── dependency_links.txt
+│   ├── requires.txt
 │   └── top_level.txt
 ├── minwei_tools
 │   ├── __init__.py
@@ -22,14 +23,13 @@ minwei_tools/
 │   ├── server.py
 │   └── uv_doc.py
 ├── minwei_tools.egg-info
+│   ├── PKG-INFO
+│   ├── SOURCES.txt
 │   ├── dependency_links.txt
 │   ├── entry_points.txt
-│   ├── PKG-INFO
 │   ├── requires.txt
-│   ├── SOURCES.txt
 │   └── top_level.txt
 ├── pyproject.toml
-├── README.md
 ├── setup.py
 ├── test.md
 └── uv.lock
@@ -50,18 +50,30 @@ minwei_tools/
 cargo install uv
 ```
 
+如果有基本的python跟pip
+
+```bash
+pip install uv
+```
+
 或使用官方安裝腳本：
-```bash
+
+```ps
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```bash
+```
+
+如果是在 windows底下:
+```ps
+wget -qO- https://astral.sh/uv/install.sh | sh
+
+```
 
 ---
 
-### 2. 建立虛擬環境與安裝套件
+### 1. 同步 `pyproject.toml` 
 
 ```bash
-uv venv
-uv pip install -r uv_requirements.txt
+uv sync
 ```
 
 ---

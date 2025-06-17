@@ -19,6 +19,7 @@ class AsyncDotter:
         self._task      : Optional[asyncio.Task] = None
         self._start_time: Optional[float]        = None
         self._running   : bool                   = False
+        self.inserted_messages: list[str]       = []  # Store inserted messages
 
         
     def format_elapsed(self, elapsed: float) -> str:
@@ -39,10 +40,21 @@ class AsyncDotter:
                 timer_str = f"[{self.format_elapsed(elapsed)}]"
                 text = timer_str + ' ' + text
 
-            sys.stdout.write(f"\r{text}")
+            sys.stdout.write(f"\r{text}\n")
+            for msg in self.inserted_messages:
+                sys.stdout.write(f"   {msg}\n")
             sys.stdout.flush()
             await asyncio.sleep(self.delay)
-            sys.stdout.write(f"\r{' ' * len(text)}\r")  # Clear line
+            lines_to_clear = 1 + len(self.inserted_messages)
+            for _ in range(lines_to_clear):
+                sys.stdout.write("\033[F")  # Move cursor up one line
+                sys.stdout.write("\033[K")  # Clear the entire line
+            sys.stdout.flush()
+            
+    async def insert_message(self, new_message: str, max_str : int = 5):
+        self.inserted_messages.append(new_message)
+        if len(self.inserted_messages) > max_str:
+            self.inserted_messages.pop(0)
 
     async def update_message(self, new_message: str, delay: float = 0.1):
         await asyncio.sleep(delay)
@@ -67,7 +79,26 @@ if __name__ == "__main__":
     import asyncio
 
     async def main():
-        async with AsyncDotter("Loading", show_timer=False, cycle=piano, delay=0.1):
-            await asyncio.sleep(5)
+        async with AsyncDotter("Loading", show_timer=False, cycle=piano, delay=0.1) as d:
+            
+            await d.insert_message("This is a test message 1")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 2")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 3")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 4")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 5")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 6")
+            await asyncio.sleep(1)
+            await d.update_message("[*] Player log grabbed", delay=0.1)
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 7")
+            await asyncio.sleep(1)
+            await d.insert_message("This is a test message 8")
+            await asyncio.sleep(1)        
+            await d.insert_message("This is a test message 9")
 
     asyncio.run(main())

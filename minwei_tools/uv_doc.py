@@ -18,7 +18,6 @@ def build_tree(path: Path, prefix="") -> list[str]:
             lines.extend(build_tree(entry, prefix + extension))
     return lines
 
-
 def generate_readme(project_name, tree_structure):
     return f"""\
 # {project_name}
@@ -45,18 +44,30 @@ def generate_readme(project_name, tree_structure):
 cargo install uv
 ```
 
+如果有基本的python跟pip
+
+```bash
+pip install uv
+```
+
 或使用官方安裝腳本：
-```bash
+
+```ps
 curl -LsSf https://astral.sh/uv/install.sh | sh
-```bash
+```
+
+如果是在 windows底下:
+```ps
+wget -qO- https://astral.sh/uv/install.sh | sh
+
+```
 
 ---
 
-### 2. 建立虛擬環境與安裝套件
+### 1. 同步 `pyproject.toml` 
 
 ```bash
-uv venv
-uv pip install -r uv_requirements.txt
+uv sync
 ```
 
 ---
