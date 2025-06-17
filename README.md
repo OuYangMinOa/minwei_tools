@@ -5,6 +5,7 @@
 1. Dotter : Display animated text on screen during long missions
 2. re_result : A Rust-like approach to error handling
 3. server : A file transfer server 
+4. us_doc : A `uv` doc generator
 
 # Install
 
@@ -84,4 +85,19 @@ pip install minwei_tools
             print(f"Result: {value}")
         case Err(value):
             print(f"Error: {value}")
+    ```
+
+* ## uv doc
+    ```bash
+    python -m minwei_tools.uv_doc -p {PROJECT_NAME}
+    ```
+
+    ```
+    -h, --help            show this help message and exit
+    -p PROJECT_NAME, --project_name PROJECT_NAME
+                            Name of the project. Defaults to the current directory name.
+    -o OUTPUT, --output OUTPUT
+                            Output file name. Defaults to README.md.
+    -d DIRECTORY, --directory DIRECTORY
+                            Directory to scan. Defaults to the current working directory.
     ```
