@@ -29,10 +29,29 @@ pip install minwei_tools
     from minwei_tools import Dotter, piano, slash
     from time import sleep
 
-    with Dotter(message="[*] Testing 1", cycle=slash, delay=0.1, show_timer=1) as d:
-        sleep(10)
-        d.update_message("[-] Testing 2", delay=0.1)
-        sleep(2)
+    with Dotter(message="[*] Grabing player log", cycle=slash, delay=0.2, show_timer=0) as d:
+        d.insert_message("This is a test message 1")
+        sleep(1)
+        d.insert_message("This is a test message 2")
+        sleep(1)
+        d.insert_message("This is a test message 3")
+        sleep(1)
+        d.update_message("[*] Player log grabbed", delay=0.1)
+        sleep(1)
+        d.insert_message("This is a test message 4")
+        sleep(1)
+        d.insert_message("This is a test message 5")
+        sleep(1)        
+        d.insert_message("This is a test message 6")
+        for i in range(7, 80):
+            d.insert_message(f"This is another message {i}", max_str = 10, prefix = "*")
+            sleep(0.05)
+        for i in range(80, 250):
+            d.insert_message(f"This is another message {i}", max_str = 20, prefix = f"🚀{cm.Style.RESET_ALL}{cm.Style.BRIGHT}")
+            sleep(0.01)       
+        for i in range(250, 500):
+            d.insert_message(f"This is another message {i}", max_str = 5, prefix = f"{cm.Style.RESET_ALL}{cm.Style.BRIGHT}🚀{cm.Style.RESET_ALL}{cm.Style.DIM}")
+            sleep(0.01)                      
     ```
 
     Also support an `async` dotter

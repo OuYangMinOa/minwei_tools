@@ -1,6 +1,7 @@
 # A dotter while I'm thinking
 from typing import Optional
 
+import colorama as cm
 import itertools
 import threading
 import time
@@ -36,6 +37,7 @@ class Dotter:
         self.start_time       : Optional[float]            = None
         self.running          : bool                       = False
         self.inserted_messages: list[str]                 = []  # Store inserted messages
+        self.max_inserted_line = 0
 
     def format_elapsed(self, elapsed: float) -> str:
         if elapsed < 300:
@@ -57,10 +59,11 @@ class Dotter:
                 
             sys.stdout.write(f"\r{text}\n")
             for msg in self.inserted_messages:
-                sys.stdout.write(f"  {msg}\n")
+                sys.stdout.write(f"    {cm.Style.DIM}{msg}{cm.Style.RESET_ALL}\n")
             sys.stdout.flush()
             time.sleep(self.delay)
-            lines_to_clear = 1 + len(self.inserted_messages)
+            self.max_inserted_line = max(self.max_inserted_line, len(self.inserted_messages))
+            lines_to_clear = 1 + self.max_inserted_line
             for _ in range(lines_to_clear):
                 sys.stdout.write("\033[F")  # Move cursor up one line
                 sys.stdout.write("\033[K")  # Clear the entire line
@@ -75,9 +78,9 @@ class Dotter:
         self.message = new_message
         self.delay = delay  # Update the delay if needed
         
-    def insert_message(self, new_message: str, max_str : int = 5):
-        self.inserted_messages.append(new_message)
-        if len(self.inserted_messages) > max_str:
+    def insert_message(self, new_message: str, max_str : int = 5, prefix = "=>"):
+        self.inserted_messages.append(prefix + " " + new_message)
+        while len(self.inserted_messages) > max_str:
             self.inserted_messages.pop(0)
         
     def __enter__(self):
@@ -90,7 +93,8 @@ class Dotter:
         self.running = False
         if self.dotter_thread is not None:
             self.dotter_thread.join()
-        lines_to_clear = 1 + len(self.inserted_messages)
+        self.max_inserted_line = max(self.max_inserted_line, len(self.inserted_messages))
+        lines_to_clear = 1 + self.max_inserted_line
         for _ in range(lines_to_clear):
             sys.stdout.write("\033[F")  # Move cursor up one line
             sys.stdout.write("\033[K")  # Clear the entire line
@@ -98,25 +102,30 @@ class Dotter:
 
 if __name__ == "__main__":
     from time import sleep
+    import colorama as cm
     import asyncio
 
-    with Dotter(message="[*] Grabing player log", cycle=slash, delay=0.1, show_timer=1) as d:
+    with Dotter(message="[*] Grabing player log", cycle=slash, delay=0.2, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
         sleep(1)
         d.insert_message("This is a test message 3")
         sleep(1)
+        d.update_message("[*] Player log grabbed", delay=0.1)
+        sleep(1)
         d.insert_message("This is a test message 4")
         sleep(1)
         d.insert_message("This is a test message 5")
-        sleep(1)
-        d.insert_message("This is a test message 6")
-        sleep(1)
-        d.update_message("[*] Player log grabbed", delay=0.1)
-        sleep(1)
-        d.insert_message("This is a test message 7")
-        sleep(1)
-        d.insert_message("This is a test message 8")
         sleep(1)        
-        d.insert_message("This is a test message 9")
+        d.insert_message("This is a test message 6")
+        for i in range(7, 80):
+            d.insert_message(f"This is another message {i}", max_str = 10, prefix = "*")
+            sleep(0.05)
+        for i in range(80, 250):
+            d.insert_message(f"This is another message {i}", max_str = 20, prefix = f"🚀{cm.Style.RESET_ALL}{cm.Style.BRIGHT}")
+            sleep(0.01)       
+        for i in range(250, 500):
+            d.insert_message(f"This is another message {i}", max_str = 5, prefix = f"{cm.Style.RESET_ALL}{cm.Style.BRIGHT}🚀{cm.Style.RESET_ALL}{cm.Style.DIM}")
+            sleep(0.01)            
+            

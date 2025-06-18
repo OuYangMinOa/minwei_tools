@@ -1,5 +1,6 @@
 from typing import Optional
 
+import colorama as cm
 import itertools
 import asyncio
 import time
@@ -20,7 +21,7 @@ class AsyncDotter:
         self._start_time: Optional[float]        = None
         self._running   : bool                   = False
         self.inserted_messages: list[str]       = []  # Store inserted messages
-
+        self.max_inserted_line  = 0
         
     def format_elapsed(self, elapsed: float) -> str:
         if elapsed < 300:
@@ -42,18 +43,19 @@ class AsyncDotter:
 
             sys.stdout.write(f"\r{text}\n")
             for msg in self.inserted_messages:
-                sys.stdout.write(f"   {msg}\n")
+                sys.stdout.write(f"    {cm.Style.DIM}{msg}{cm.Style.RESET_ALL}\n")
             sys.stdout.flush()
             await asyncio.sleep(self.delay)
-            lines_to_clear = 1 + len(self.inserted_messages)
+            self.max_inserted_line = max(self.max_inserted_line, len(self.inserted_messages))
+            lines_to_clear = 1 + self.max_inserted_line
             for _ in range(lines_to_clear):
                 sys.stdout.write("\033[F")  # Move cursor up one line
                 sys.stdout.write("\033[K")  # Clear the entire line
             sys.stdout.flush()
             
-    async def insert_message(self, new_message: str, max_str : int = 5):
-        self.inserted_messages.append(new_message)
-        if len(self.inserted_messages) > max_str:
+    async def insert_message(self, new_message: str, max_str : int = 5, prefix : str = "=>"):
+        self.inserted_messages.append(prefix + " " + new_message)
+        while len(self.inserted_messages) > max_str:
             self.inserted_messages.pop(0)
 
     async def update_message(self, new_message: str, delay: float = 0.1):
