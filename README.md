@@ -56,7 +56,7 @@ pip install minwei_tools
             sleep(0.01)                      
     ```
 
-    ![alt text](loading2.gif)
+    ![alt text](loading.gif)
 
     Also support an `async` dotter
 
