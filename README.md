@@ -23,7 +23,7 @@ pip install minwei_tools
 
 * ## Dotter
 
-    ![alt text](loading.gif)
+    ![alt text](loading2.gif)
 
     ```python
     from minwei_tools import Dotter, piano, slash
