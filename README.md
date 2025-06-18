@@ -31,29 +31,33 @@ pip install minwei_tools
     from minwei_tools import Dotter, piano, slash
     from time import sleep
 
-    with Dotter(message="[*] Grabing player log", cycle=slash, delay=0.2, show_timer=0) as d:
+    with Dotter(message="[*] Normal speed", cycle=slash, delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
         sleep(1)
         d.insert_message("This is a test message 3")
         sleep(1)
-        d.update_message("[*] Player log grabbed", delay=0.1)
+        d.update_message("[*] Fast spin", delay=0.05)
         sleep(1)
         d.insert_message("This is a test message 4")
         sleep(1)
         d.insert_message("This is a test message 5")
         sleep(1)        
         d.insert_message("This is a test message 6")
+        d.update_message("[*] Slow spin", delay=1)
         for i in range(7, 80):
             d.insert_message(f"This is another message {i}", max_str = 10, prefix = "*")
             sleep(0.05)
+        d.update_message("[*] Longer msg", delay=0.5)
         for i in range(80, 250):
             d.insert_message(f"This is another message {i}", max_str = 20, prefix = f"🚀{cm.Style.RESET_ALL}{cm.Style.BRIGHT}")
             sleep(0.01)       
+        d.update_message("[*] Short msg", delay=0.5)
+            
         for i in range(250, 500):
-            d.insert_message(f"This is another message {i}", max_str = 5, prefix = f"{cm.Style.RESET_ALL}{cm.Style.BRIGHT}🚀{cm.Style.RESET_ALL}{cm.Style.DIM}")
-            sleep(0.01)                      
+            d.insert_message(f"This is another message {i}", max_str = 3, prefix = f"{cm.Style.RESET_ALL}{cm.Style.BRIGHT}🚀{cm.Style.RESET_ALL}{cm.Style.DIM}")
+            sleep(0.01)                           
     ```
 
     ![alt text](loading.gif)
