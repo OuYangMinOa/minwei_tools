@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='minwei_tools',
-    version='0.1.11',
+    version='0.1.12',
     author='OUYANGMINWEI',
     author_email='wesley91345@gmail.com',
     description='Some useful tools for Python development',
