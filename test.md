@@ -8,7 +8,8 @@ minwei_tools/
 ├── .python-version
 ├── LICENSE
 ├── README.md
-├── loading.gif
+├── file_server.gif
+├── loading2.gif
 ├── minwei_tool.egg-info
 │   ├── PKG-INFO
 │   ├── SOURCES.txt
@@ -31,7 +32,6 @@ minwei_tools/
 │   └── top_level.txt
 ├── pyproject.toml
 ├── setup.py
-├── test.md
 └── uv.lock
 ```
 
@@ -64,8 +64,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 如果是在 windows底下:
 ```ps
-wget -qO- https://astral.sh/uv/install.sh | sh
-
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 ---

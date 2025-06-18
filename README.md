@@ -21,9 +21,11 @@ pip install minwei_tools
     python -m minwei_tools.server -p {port} -h {host}
     ```
 
+    ![alt text](file_server.gif)
+
 * ## Dotter
 
-    ![alt text](loading2.gif)
+    An example
 
     ```python
     from minwei_tools import Dotter, piano, slash
@@ -53,6 +55,8 @@ pip install minwei_tools
             d.insert_message(f"This is another message {i}", max_str = 5, prefix = f"{cm.Style.RESET_ALL}{cm.Style.BRIGHT}🚀{cm.Style.RESET_ALL}{cm.Style.DIM}")
             sleep(0.01)                      
     ```
+
+    ![alt text](loading2.gif)
 
     Also support an `async` dotter
 
@@ -110,6 +114,9 @@ pip install minwei_tools
     ```bash
     python -m minwei_tools.uv_doc -p {PROJECT_NAME}
     ```
+
+    ![alt text](uv_doc.gif)
+
 
     ```
     -h, --help            show this help message and exit
