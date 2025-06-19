@@ -25,14 +25,14 @@ pip install minwei_tools
 
 * ## Dotter
 
-    An example
+    An example of dotter, DotStyle have many style can use.
 
     ```python
     from minwei_tools import Dotter
     from minwei_tools import DotStyle
     from time import sleep
 
-    with Dotter(message="[*] Normal speed", cycle=Dotter.slash, delay=0.25, show_timer=0) as d:
+    with Dotter(message="[*] Normal speed", cycle=DotStyle.slash, delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
