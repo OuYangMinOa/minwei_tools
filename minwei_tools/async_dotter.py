@@ -1,5 +1,5 @@
 from typing import Optional, Iterable
-from dotter_style import DotStyle
+from .dotter_style import DotStyle
 
 import colorama as cm
 import asyncio
