@@ -1,5 +1,6 @@
 # A dotter while I'm thinking
 from typing import Optional, Iterable
+from dotter_style import DotStyle
 
 import colorama as cm
 import itertools
@@ -7,26 +8,13 @@ import threading
 import time
 import sys
 
-piano = ['▉▁▁▁▁▁', '▉▉▂▁▁▁', '▉▉▉▃▁▁', '▉▉▉▉▅▁', 
-         '▉▉▉▉▉▇', '▉▉▉▉▉▉', '▉▉▉▉▇▅', '▉▉▉▆▃▁', 
-         '▉▉▅▃▁▁', '▉▇▃▁▁▁', '▇▃▁▁▁▁', '▃▁▁▁▁▁', 
-         '▁▁▁▁▁▁', '▁▁▁▁▁▉', '▁▁▁▁▃▉', '▁▁▁▃▅▉', 
-         '▁▁▃▅▇▉', '▁▃▅▇▉▉', '▃▅▉▉▉▉', '▅▉▉▉▉▉',
-         '▇▉▉▉▉▉', '▉▉▉▉▉▉', '▇▉▉▉▉▉', '▅▉▉▉▉▉', 
-         '▃▅▉▉▉▉', '▁▃▅▉▉▉', '▁▁▃▅▉▉', '▁▁▁▃▅▉',
-         '▁▁▁▁▃▅', '▁▁▁▁▁▃', '▁▁▁▁▁▁', '▁▁▁▁▁▁', 
-         '▁▁▃▁▁▁', '▁▃▅▃▁▁', '▁▅▉▅▁▁', '▃▉▉▉▃▁', 
-         '▅▉▁▉▅▃', '▇▃▁▃▇▅', '▉▁▁▁▉▇', '▉▅▃▁▃▅', 
-         '▇▉▅▃▅▇', '▅▉▇▅▇▉', '▃▇▉▇▉▅', '▁▅▇▉▇▃', 
-         '▁▃▅▇▅▁', '▁▁▃▅▃▁', '▁▁▁▃▁▁', '▁▁▁▁▁▁',
-        ]
-
-slash = ["\\","|","/", "-"]
+piano = DotStyle.piano
+cycle = DotStyle.dot_cycle
 
 class Dotter:
     # A dotter while I'm thinking
     def __init__(self, message: str = "Thinking", delay: float = 0.5, 
-                 cycle: list[str] = ["", ".", ". .", ". . ."], 
+                 cycle: list[str] = DotStyle.dot_cycle, 
                  show_timer: bool = False) -> None:
         
         self.lock                                           = threading.Lock()
@@ -133,7 +121,7 @@ if __name__ == "__main__":
     import colorama as cm
     import asyncio
 
-    with Dotter(message="[*] Normal speed", cycle=slash, delay=0.25, show_timer=0) as d:
+    with Dotter(message="[*] Normal speed", cycle=DotStyle.dot_cycle , delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
