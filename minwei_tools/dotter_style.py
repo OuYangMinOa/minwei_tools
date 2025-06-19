@@ -43,6 +43,6 @@ class DotStyle(list, Enum):
                              '▇▉▅▃▅▇', '▅▉▇▅▇▉', '▃▇▉▇▉▅', '▁▅▇▉▇▃', 
                              '▁▃▅▇▅▁', '▁▁▃▅▃▁', '▁▁▁▃▁▁', '▁▁▁▁▁▁',]
 
-        
-    def random_get(cls) -> 'DotStyle':
+    @classmethod
+    def random(cls) -> 'DotStyle':
         return random.choice(list(cls))

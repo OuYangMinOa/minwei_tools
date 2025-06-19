@@ -32,7 +32,9 @@ pip install minwei_tools
     from minwei_tools import DotStyle
     from time import sleep
 
-    with Dotter(message="[*] Normal speed", cycle=DotStyle.slash, delay=0.25, show_timer=0) as d:
+    rand_style = DotStyle.random()
+
+    with Dotter(message="[*] Normal speed", cycle=rand_style, delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
