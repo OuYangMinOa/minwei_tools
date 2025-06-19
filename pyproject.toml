@@ -1,6 +1,6 @@
 [project]
 name = "minwei-tools"
-version = "0.1.13"
+version = "0.1.14"
 description = "A sample tool by MinWei"
 readme = "README.md"
 requires-python = ">=3.9"
