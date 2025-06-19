@@ -1,15 +1,16 @@
 # A dotter while I'm thinking
 from typing import Optional, Iterable
-from dotter_style import DotStyle
-
 import colorama as cm
 import itertools
 import threading 
 import time
 import sys
 
+from minwei_tools.dotter_style import DotStyle
+
 piano = DotStyle.piano
 cycle = DotStyle.dot_cycle
+slash = DotStyle.slash
 
 class Dotter:
     # A dotter while I'm thinking
@@ -119,9 +120,10 @@ class Dotter:
 if __name__ == "__main__":
     from time import sleep
     import colorama as cm
+    from minwei_tools import DotStyle
     import asyncio
 
-    with Dotter(message="[*] Normal speed", cycle=DotStyle.dot_cycle , delay=0.25, show_timer=0) as d:
+    with Dotter(message="[*] Normal speed", cycle=DotStyle.loading_cycle , delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
