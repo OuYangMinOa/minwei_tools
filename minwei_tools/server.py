@@ -117,7 +117,7 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="MinWei File Transfer Server")
     parser.add_argument("-p", "--port", type=int, default=8000, help="Port to run the server on")
-    parser.add_argument("--host", type=str, default="localhost", help="Host to run the server on")
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to run the server on")
     parser.add_argument("--debug", action="store_true", help="Run the server in debug mode")
     parser.add_argument("-d", "--base_dir", type=str, default=".", help="Base directory to serve files from")
     args = parser.parse_args()
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     if not os.access(BASE_DIR, os.R_OK):
         raise PermissionError(f"Base directory '{BASE_DIR}' is not readable.")
     
-    print(f"\n * Starting {colorama.Back.YELLOW}MinWei File Transfer Server{colorama.Style.RESET_ALL} at {colorama.Back.YELLOW}{colorama.Fore.BLACK}http://{args.host}:{args.port}{colorama.Style.RESET_ALL} with base directory {colorama.Back.YELLOW}{colorama.Fore.BLACK}{BASE_DIR}{colorama.Style.RESET_ALL}")
+    print(f"\n * Starting {colorama.Fore.YELLOW}MinWei File Transfer Server{colorama.Style.RESET_ALL} at {colorama.Fore.YELLOW}http://{args.host}:{args.port}{colorama.Style.RESET_ALL} with base directory {colorama.Fore.YELLOW}{BASE_DIR}{colorama.Style.RESET_ALL}")
     
     app.run(host=args.host, port=args.port, debug=args.debug)
     
