@@ -126,6 +126,7 @@ if __name__ == "__main__":
             await d.insert_message("This is a test message 6")
             await asyncio.sleep(1)
             await d.insert_message("This is a test message 7")
+            
             for i in range(7, 80):
                 await d.insert_message(f"This is another message {i}", max_str = 10, prefix = "*")
                 await asyncio.sleep(0.05)

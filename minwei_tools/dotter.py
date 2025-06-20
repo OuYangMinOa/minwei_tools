@@ -123,7 +123,7 @@ if __name__ == "__main__":
     from minwei_tools import DotStyle
     import asyncio
 
-    with Dotter(message="[*] Normal speed", cycle=DotStyle.random() , delay=0.25, show_timer=0) as d:
+    with Dotter(message="[*] Normal speed", cycle=DotStyle.loading_cycle , delay=0.25, show_timer=0) as d:
         d.insert_message("This is a test message 1")
         sleep(1)
         d.insert_message("This is a test message 2")
@@ -141,10 +141,12 @@ if __name__ == "__main__":
         for i in range(7, 80):
             d.insert_message(f"This is another message {i}", max_str = 10, prefix = "*")
             sleep(0.05)
+        
         d.update_message("[*] Longer msg", delay=0.5)
-        for i in range(80, 250):
-            d.insert_message(f"This is another message {i}", max_str = 20, prefix = f"🚀{cm.Style.RESET_ALL}{cm.Style.BRIGHT}")
-            sleep(0.01)       
+        while True:
+            for i in range(80, 250):
+                d.insert_message(f"This is another message {i}", max_str = 20, prefix = f"🚀{cm.Style.RESET_ALL}{cm.Style.BRIGHT}")
+                sleep(0.01)       
         d.update_message("[*] Short msg", delay=0.5)
             
         for i in range(250, 500):
