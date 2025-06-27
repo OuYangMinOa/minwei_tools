@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='minwei_tools',
-    version='0.1.15',
+    version='0.1.16',
     author='OUYANGMINWEI',
     author_email='wesley91345@gmail.com',
-    description='Some useful tools for Python development',
+    description='Some useful tools for Python development by MinWei',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/OuYangMinOa/minwei_tools',

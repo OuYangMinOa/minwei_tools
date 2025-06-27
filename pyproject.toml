@@ -1,7 +1,7 @@
 [project]
 name = "minwei-tools"
-version = "0.1.15"
-description = "A sample tool by MinWei"
+version = "0.1.16"
+description = "Some useful tools for Python development by MinWei"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -22,5 +22,5 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-minwei-tools-server = "minwei_tools.server:app.run"
-uv-doc-generator = "minwei_tools.uv_doc_generator:generate_readme"
+"minwei_tools.server" = "minwei_tools.server:app.run"
+"minwei_tools.uv_doc" = "minwei_tools.uv_doc:generate_readme"
