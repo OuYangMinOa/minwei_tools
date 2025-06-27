@@ -14,7 +14,7 @@ def get_project_name(path : Path):
 
 def build_tree(path: Path, prefix = "", exclude_dirs : list[str] = [], dot : Dotter = None) -> list[str]:
     lines = []
-    entries = sorted([p for p in path.iterdir() if not ((p.name in IGNORE_DIRS) or (p.name not in exclude_dirs))])
+    entries = sorted([p for p in path.iterdir() if not ((p.name in IGNORE_DIRS) or (p.name in exclude_dirs))])
     for i, entry in enumerate(entries):
         connector = "└── " if i == len(entries) - 1 else "├── "
         lines.append(f"{prefix}{connector}{entry.name}")
@@ -22,14 +22,14 @@ def build_tree(path: Path, prefix = "", exclude_dirs : list[str] = [], dot : Dot
             dot.insert_message(f"{entry.name}")
         if entry.is_dir():
             extension = "    " if i == len(entries) - 1 else "│   "
-            lines.extend(build_tree(entry, prefix + extension, exclude_dirs))
+            lines.extend(build_tree(entry, prefix + extension, exclude_dirs, dot = dot))
     return lines
 
 def generate_readme(project_name, tree_structure):
     if tree != "":
         tree_str = f"""
         
-        ## 📁 專案結構範例
+## 📁 專案結構範例
 
 ```
 {project_name}/
@@ -150,6 +150,7 @@ if __name__ == "__main__":
                 
     # 獲取專案結構
     if not no_tree:
+        print(f"walk though the project")
         with Dotter(message = f"Walk though project : {project_path}", show_timer = 1, cycle = DotStyle.gear_style, delay = 0.1) as dot:
             tree_lines = build_tree(project_path, exclude_dirs = exclude_files, dot = dot)
             tree       = "\n".join(tree_lines)
